@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../ebok_collection.dart';
+import '../../widgets/widgets.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -96,30 +97,11 @@ Widget _homepagebody(BuildContext context) {
 /// Work as a file picker launcher button
 /// to add new books.
 Widget _floatingActionBtn(BuildContext context) {
-  return GestureDetector(
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      height: 60,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Add new books",
-            style: Theme.of(context).textTheme.button,
-          ),
-          const Icon(Icons.add),
-        ],
-      ),
-    ),
-    onTap: () {
-      // TODO: add haptic feedback if not present
-      debugPrint("Tapped");
+  return FloatingActionCustomBtn(
+    title: "Add new books",
+    icondata: Icons.add,
+    ontap: () {
+      debugPrint("Add new books pressed");
     },
   );
 }
