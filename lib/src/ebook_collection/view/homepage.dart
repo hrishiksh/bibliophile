@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../ebok_collection.dart';
 import '../../widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -8,11 +9,19 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: _appBar(context),
-        body: _homepagebody(context),
-        floatingActionButton: _floatingActionBtn(context),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      child: BlocProvider(
+        create: (BuildContext context) => FilePickerBloc(),
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              appBar: _appBar(context),
+              body: _homepagebody(context),
+              floatingActionButton: _floatingActionBtn(context),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+            );
+          },
+        ),
       ),
     );
   }
@@ -101,7 +110,7 @@ Widget _floatingActionBtn(BuildContext context) {
     title: "Add new books",
     icondata: Icons.add,
     ontap: () {
-      debugPrint("Add new books pressed");
+      context.read<FilePickerBloc>().pickFile();
     },
   );
 }

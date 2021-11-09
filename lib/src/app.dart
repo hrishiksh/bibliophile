@@ -10,7 +10,7 @@ class Bibliophile extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightTheme(context),
-      home: const BookCoverSynopsis(),
+      home: const Homepage(),
     );
   }
 }
